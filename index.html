@@ -1,0 +1,55 @@
+<div id="random-image-wrapper" style="
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  background-color: #000;
+  transition: background-color 0.5s ease;
+">
+  <img id="random-image"
+       alt="Featured Image"
+       style="
+         max-width: 90%;
+         height: auto;
+         opacity: 0;
+         transition: opacity 0.5s ease;
+       ">
+</div>
+
+<script>
+  const images = [
+    {
+      src: "10352.png",
+      background: "#000000"
+    },
+    {
+      src: "10351.png",
+      background: "#ffffff"
+    },
+    {
+      src: "10351.png",
+      background: "#000000"
+    }
+  ];
+
+  const img = document.getElementById("random-image");
+  const wrapper = document.getElementById("random-image-wrapper");
+
+  function showRandomImage() {
+    const choice = images[Math.floor(Math.random() * images.length)];
+
+    img.style.opacity = 0;
+
+    setTimeout(() => {
+      img.src = choice.src;
+      wrapper.style.backgroundColor = choice.background;
+      img.style.opacity = 1;
+    }, 400);
+  }
+
+  // First image on load
+  showRandomImage();
+
+  // Change image every 6 seconds (adjust if desired)
+  setInterval(showRandomImage, 6000);
+</script>
